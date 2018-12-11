@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const PokeCard = (props) => {
 
-
   return (
-    <TouchableOpacity onPress={() => props.goDetail()}>
+    <TouchableOpacity onPress={() => props.navigation.push('Detail')}>
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
           {/* <ImageBackground style={styles.pokeImageBackground} source={{uri: 'https://cdn2.iconfinder.com/data/icons/gaming-stroke-icons/104/22-gaming-pokemon-pokeball-512.png'}}> */}
@@ -58,4 +58,5 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PokeCard;
+
+export default withNavigation(PokeCard);

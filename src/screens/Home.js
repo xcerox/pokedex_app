@@ -3,9 +3,10 @@ import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import GridView from 'react-native-super-grid';
 
-import { pokemonsFetch } from '../store/actions/poke-actions';
+import { pokemonsFetch, pokemonsUpdatePage } from '../store/actions/poke-actions';
 import Loading from '../components/Loading';
 import PokeCard from '../components/PokeCard';
+import { onScrollGetBotton } from '../utils/functions/infinityScroll';
 
 
 const styles = StyleSheet.create({
@@ -22,22 +23,29 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.pokemonsFetch();
+    if (this.props.pages.length <= 0) { 
+      this.props.pokemonsFetch();
+    } 
   }
 
-  goDetail = () => {
-    this.props.navigation.push('Detail');
+  onScroll = ({ nativeEvent }) => {
+    if (onScrollGetBotton(nativeEvent)) {
+      this.props.pokemonsUpdatePage();
+    }
   }
 
   render() {
-    const { list, isLoading } = this.props.pokemons;
+    const { isLoading, pages } = this.props;
 
     return (
       <Loading isLoading={isLoading}>
         <GridView
           itemDimension={130}
-          items={list}
-          renderItem={item => <PokeCard goDetail={this.goDetail} pokemon={item} />}
+          items={pages}
+          renderItem={item => <PokeCard pokemon={item} />}
+          initialNumToRender={76}
+          keyExtractor={item => item[0].name }
+          onScrollEndDrag={this.onScroll}
         />
       </Loading>
     )
@@ -45,7 +53,10 @@ class Home extends PureComponent {
 }
 
 function mapStateToProps({ pokemons }) {
-  return { pokemons }
+  return { 
+    pages : pokemons.pages,
+    isLoading: pokemons.isLoading,
+  }
 }
 
-export default connect(mapStateToProps, { pokemonsFetch })(Home);
+export default connect(mapStateToProps, { pokemonsFetch, pokemonsUpdatePage })(Home);
