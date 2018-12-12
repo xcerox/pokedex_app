@@ -1,25 +1,18 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import GridView from 'react-native-super-grid';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { pokemonsFetch, pokemonsUpdatePage } from '../store/actions/poke-actions';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading/Loading';
 import PokeCard from '../components/PokeCard';
-import { onScrollGetBotton } from '../utils/functions/infinityScroll';
-
-
-const styles = StyleSheet.create({
-  gridView: {
-    flex: 1,
-    paddingTop: 25,
-  },
-});
+import LoadingFooter from '../components/Loading/LoadingFooter';
 
 class Home extends PureComponent {
 
   static navigationOptions = {
-    title: 'PokeDex'
+    title: 'PokeDex',
+    headerRight: (<Icon name='magnify' color='#03A9F4'/>)
   }
 
   componentDidMount() {
@@ -28,24 +21,25 @@ class Home extends PureComponent {
     } 
   }
 
-  onScroll = ({ nativeEvent }) => {
-    if (onScrollGetBotton(nativeEvent)) {
+  onEndReached = () => {
+    if (this.props.hasNext) {
       this.props.pokemonsUpdatePage();
     }
   }
 
   render() {
-    const { isLoading, pages } = this.props;
+    const { isLoading, pages, hasNext } = this.props;
 
     return (
-      <Loading isLoading={isLoading}>
+      <Loading show={isLoading}>
         <GridView
           itemDimension={130}
           items={pages}
           renderItem={item => <PokeCard pokemon={item} />}
           initialNumToRender={76}
           keyExtractor={item => item[0].name }
-          onScrollEndDrag={this.onScroll}
+          onEndReached={this.onEndReached}
+          ListFooterComponent={() => <LoadingFooter show={hasNext}/>}
         />
       </Loading>
     )
@@ -56,6 +50,7 @@ function mapStateToProps({ pokemons }) {
   return { 
     pages : pokemons.pages,
     isLoading: pokemons.isLoading,
+    hasNext: pokemons.hasNext,
   }
 }
 

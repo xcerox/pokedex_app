@@ -1,5 +1,5 @@
 import { createReducer } from '../../utils/factories/create-reducer';
-import { POKEN_FETCH_COMPLETE, POKEN_FETCH_ERROR, POKEN_FETCH_INIT, POKEN_UPDATE_PAGE } from '../../utils/constans/poke-const';
+import { POKEN_FETCH_COMPLETE, POKEN_FETCH_ERROR, POKEN_FETCH_INIT, POKEN_UPDATE_PAGE_INIT } from '../../utils/constans/poke-const';
 import { next } from '../../utils/functions/infinityScroll';
 
 const init = {
@@ -24,7 +24,7 @@ const handler = {
   [POKEN_FETCH_ERROR]: (state, action) => {
     return { ...state, err: action.err, isLoading: false };
   },
-  [POKEN_UPDATE_PAGE]: (state, action, data) => {
+  [POKEN_UPDATE_PAGE_INIT]: (state, action, data) => {
     if (state.hasNext) {
       const page = next(state.data, state.current);
       return { ...state, current: page.page, hasNext: page.hasNext, pages: state.pages.concat(page.data)}

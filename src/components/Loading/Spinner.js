@@ -19,12 +19,4 @@ const Spinner = () => (
   </View>
 )
 
-const Loading = ({ isLoading, children }) => (
-  <View  >
-    {
-      isLoading ? (<Spinner />) : (children)
-    }
-  </View>
-)
-
-export default Loading;
+export default Spinner;

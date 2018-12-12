@@ -1,23 +1,32 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { debounce } from 'lodash';
 
-const PokeCard = (props) => {
+const PokeCard = ({ pokemon, navigation }) => {
+
+  
+
+  const goDetail = debounce(() => {
+    navigation.navigate('Detail', { pokemon });
+  }, 400);
 
   return (
-    <TouchableOpacity onPress={() => props.navigation.push('Detail')}>
-      <View style={styles.itemContainer}>
-        <View style={styles.imageContainer}>
-          {/* <ImageBackground style={styles.pokeImageBackground} source={{uri: 'https://cdn2.iconfinder.com/data/icons/gaming-stroke-icons/104/22-gaming-pokemon-pokeball-512.png'}}> */}
-          <Image style={styles.pokeImage} source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemon.code}.png` }} />
-          {/* </ImageBackground> */}
+    <View>
+      <TouchableOpacity onPress={goDetail}>
+        <View style={styles.itemContainer}>
+          <View style={styles.imageContainer}>
+            {/* <ImageBackground style={styles.pokeImageBackground} source={{uri: 'https://cdn2.iconfinder.com/data/icons/gaming-stroke-icons/104/22-gaming-pokemon-pokeball-512.png'}}> */}
+            <Image style={styles.pokeImage} source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.code}.png` }} />
+            {/* </ImageBackground> */}
+          </View>
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.descriptionText}>{`#${pokemon.code}`}</Text>
+            <Text style={styles.descriptionText}>{pokemon.name}</Text>
+          </View>
         </View>
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText}>{`#${props.pokemon.code}`}</Text>
-          <Text style={styles.descriptionText}>{props.pokemon.name}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   )
 }
 

@@ -8,17 +8,11 @@ class PokeService {
     if (isNull(me)) {
       me = this;
       me.URL_INFO = 'https://pokeapi.co/api/v2/';
-      me.URL_IMGAGES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
-      me.getImage = me.getImage.bind(me);
       me.getAll = me.getAll.bind(me);
     }
 
     return me;
-  }
-
-  getImage(id) {
-    return axios.get(`${this.URL_IMGAGES}${id}.png`);
   }
 
   getInfo(id) {
