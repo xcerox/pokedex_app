@@ -1,52 +1,76 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
 
-import { BarChart, Grid, YAxis } from 'react-native-svg-charts';
-import * as scale from 'd3-scale';
-
-const PokeStats = ({ data }) => {
-
-  if (data.length <= 0) {
-    console.log(`isEmpty`);
-    return null;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5fcff",
+    paddingTop: 10
   }
+});
 
-  return (
-    <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
-      <YAxis
-        data={data}
-        // yAccessor={(obj) => {
-        //   console.log(`obj: ${JSON.stringify(obj)}`);
-        //   return obj.index;
-        // }}
-        scale={scale.ScaleBand}
-        contentInset={{ top: 10, bottom: 10 }}
-        spacing={0.2}
-        // formatLabel={(value, index) => {
-        //   console.log(`value: ${value} \n index: ${index}`);
-        //   return data[index].name;
-        // }
-        //}
-        formatLabel={ item => {
-          console.log(JSON.stringify(item));
-          return item.name
-        } }
-      />
-      <BarChart
-        style={{ flex: 1, marginLeft: 8 }}
-        data={data}
-        horizontal={true}
-        yAccessor={({ item }) => item.value}
-        svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
-        contentInset={{ top: 10, bottom: 10 }}
-        spacing={0.2}
-        gridMin={0}
-        gridMax={250}
-      >
+class PokeStats extends PureComponent {
 
-      </BarChart>
-    </View>
-  )
+  render() {
+    console.log('render');
+    const { data } = this.props;
+
+    if (data.length <= 0) {
+      return null;
+    }
+
+    return (
+      <View style={styles.container}>
+        <VictoryChart
+          maxDomain={{ x: 255 }}
+          theme={VictoryTheme.material}
+          domainPadding={{ y: 10 }}
+          padding={{ left: 110, top: 2, bottom: 5, right: 20 }}
+          height={200}
+        >
+          <VictoryAxis
+            dependentAxis
+          />
+          <VictoryBar
+            barWidth={20}
+            cornerRadius={10}
+            data={data}
+            style={{
+              data: {
+                fill: (item) => {
+                  switch (item.x) {
+                    case "speed":
+                      return '#FA92B2';
+                      break;
+                    case "special-defense":
+                      return '#A7DB8D';
+                      break;
+                    case "special-attack":
+                      return '#9DB7F5';
+                      break;
+                    case "defense":
+                      return '#FAE078';
+                      break;
+                    case "attack":
+                      return '#F5AC78';
+                      break;
+                    case "hp":
+                      return '#FF5959';
+                      break;
+                  }
+                }
+              }
+            }}
+            horizontal
+            animate={{
+              duration: 2000,
+              onLoad: { duration: 1000 }
+            }} />
+        </VictoryChart>
+      </View>
+    )
+  }
 }
 
 export default PokeStats;

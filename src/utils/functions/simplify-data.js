@@ -14,8 +14,9 @@ const InfoSimplify = pokemon => {
   
   const stats  = pokemon.stats.map(item => {
     return {
-        value: item.base_stat,
-        name: item.stat.name
+        y: item.base_stat,
+        x: item.stat.name,
+        label: item.base_stat,
     }
   });
 

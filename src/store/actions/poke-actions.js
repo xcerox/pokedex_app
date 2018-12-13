@@ -14,7 +14,7 @@ const pokemonsFetch = createActionThunk((value, dispatch) => {
   PokeService
     .getAll()
     .then(({ data }) => dispatch(pokemonsFetchComplete(PokemonsSimplify(data.results))))
-    .catch(err => console.log(err));
+    .catch(err => dispatch(pokemonsFetchError(err)));
 });
 
 
@@ -23,7 +23,6 @@ const pokemonsUpdatePageInit = createAction(POKEN_UPDATE_PAGE_INIT);
 
 const pokemonsUpdatePage = createActionThunk((value, dispatch) => {
   dispatch(pokemonsUpdatePageInit());
-  console.log(`complete`)
 });
 
 export { pokemonsFetch, pokemonsUpdatePage };

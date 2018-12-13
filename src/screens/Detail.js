@@ -75,15 +75,11 @@ const styles = StyleSheet.create({
   },
   stats_container: {
     backgroundColor: '#fff', //(4CAF50 | 388E3C) green | #0288D1 blue
-    height: 150,
-    padding: 7,
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: 240,
   }
 });
 
 function mapStateToProps({ pokemon }) {
-  console.log(JSON.stringify(pokemon));
   return { pokemon }
 }
 
