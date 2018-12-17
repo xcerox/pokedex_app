@@ -65,7 +65,7 @@ class PokeStats extends PureComponent {
             horizontal
             animate={{
               duration: 2000,
-              onLoad: { duration: 1000 }
+              onLoad: { duration: 1000 }  
             }} />
         </VictoryChart>
       </View>

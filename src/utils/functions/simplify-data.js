@@ -1,13 +1,13 @@
 import { getPagination } from './infinityScroll';
 
-const PokemonsSimplify = pokemons => {
+const PokemonsSimplify = (pokemons, bundle = 10) => {
   return getPagination(pokemons.map((pokemon, index) => {
     pokemon.code = index + 1;
     return pokemon;
   }).filter((pokemon) => {
     return pokemon.code <= 151;
     // return true;
-  }), 35);
+  }), bundle);
 }
 
 const InfoSimplify = pokemon => {

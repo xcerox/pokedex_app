@@ -4,7 +4,7 @@ const onScrollGetBotton = nativeEvent => {
   return layoutMeasurement.height + contentOffset.y >= contentSize.height - 90;
 }
 
-const getPagination = (data, amount) => {
+const getPagination = (data, amount = 10) => {
 
   const pagination = [];
   let part = {};
@@ -12,6 +12,10 @@ const getPagination = (data, amount) => {
   let counter = 1;
   
   do {
+    if (!hasNext) {
+      amount = 40;
+    }
+
     part = data.splice(0, amount);
     hasNext = data.length > 0;
 
@@ -27,12 +31,7 @@ const getPagination = (data, amount) => {
 }
 
 const next = (data, offset) => {
-
-  let item = data.filter(item => {
-    return item.page === (offset+1);
-  });
-
-  return item[0];
+  return data[offset];;
 }
 
 export { onScrollGetBotton, getPagination, next };

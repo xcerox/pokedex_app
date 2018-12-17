@@ -29,7 +29,9 @@ class Detail extends PureComponent {
     const pokemonId = this.props.navigation.getParam('pokemon', { code: 0 }).code;
 
     return (
-      <ScrollView style={styles.main_container}>
+      <ScrollView style={styles.main_container}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.poke_photo_container}>
           <Image style={styles.pokeImage} source={{ uri: `${URL_IMG_HD}${pokemonId}.png` }} />
         </View>

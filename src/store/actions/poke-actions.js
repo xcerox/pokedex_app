@@ -17,12 +17,4 @@ const pokemonsFetch = createActionThunk((value, dispatch) => {
     .catch(err => dispatch(pokemonsFetchError(err)));
 });
 
-
-
-const pokemonsUpdatePageInit = createAction(POKEN_UPDATE_PAGE_INIT);
-
-const pokemonsUpdatePage = createActionThunk((value, dispatch) => {
-  dispatch(pokemonsUpdatePageInit());
-});
-
-export { pokemonsFetch, pokemonsUpdatePage };
+export { pokemonsFetch };

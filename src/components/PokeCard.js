@@ -5,11 +5,13 @@ import { debounce } from 'lodash';
 
 const PokeCard = ({ pokemon, navigation }) => {
 
-  
+  // const goDetail = debounce(() => {
+  //   navigation.navigate('Detail', { pokemon });
+  // }, 400);
 
-  const goDetail = debounce(() => {
+  const goDetail = () => {
     navigation.navigate('Detail', { pokemon });
-  }, 400);
+  }
 
   return (
     <View>
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'column',
     borderRadius: 5,
-    height: 120,
+    height: 80,
     backgroundColor: '#fff',
   },
   descriptionText: {
@@ -48,8 +50,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   pokeImage: {
-    width: 90,
-    height: 100,
+    width: 50,
+    height: 60,
   },
   pokeImageBackground: {
     width: 70,
