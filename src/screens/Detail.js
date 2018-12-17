@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { URL_IMG_HD } from '../utils/constans/url';
 import { pokemonDetailFetch } from '../store/actions/detail-action';
 import Loading from '../components/Loading/Loading';
 import PokeStats from '../components/PokeStats';
+import FastImage from 'react-native-fast-image';
 
 class Detail extends PureComponent {
 
@@ -33,7 +34,7 @@ class Detail extends PureComponent {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.poke_photo_container}>
-          <Image style={styles.pokeImage} source={{ uri: `${URL_IMG_HD}${pokemonId}.png` }} />
+          <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.pokeImage} source={{ uri: `${URL_IMG_HD}${pokemonId}.png`, priority: FastImage.priority.high }} />
         </View>
         <Loading show={isLoading}>
           <View style={styles.types_container}>

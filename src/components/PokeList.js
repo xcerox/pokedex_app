@@ -14,6 +14,7 @@ class PokeList extends PureComponent {
 
   footer = () => (<LoadingFooter show={this.props.pagination.hasNext} />);
 
+
   render() {
 
     const { pagination } = this.props;
@@ -25,13 +26,11 @@ class PokeList extends PureComponent {
         renderItem={this.drawChild}
         getItemLayout={this.itemLayout}
         extraData={pagination}
-        
-        maxToRenderPerBatch={20}
+        maxToRenderPerBatch={9}
         onEndReachedThreshold={0.5}
         keyExtractor={item => item[0].name}
         onEndReached={pagination.onEndReached}
         ListFooterComponent={this.footer}
-
       />
     )
   }

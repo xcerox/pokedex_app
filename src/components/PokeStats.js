@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
 class PokeStats extends PureComponent {
 
   render() {
-    console.log('render');
     const { data } = this.props;
 
     if (data.length <= 0) {

@@ -9,13 +9,13 @@ const withPagination = (WrappedComponent) => {
       data: [],
       currentPage: 0,
       pagesLoaded: [],
-      hasNext: false,
+      hasNext: false
     }
 
     componentDidMount() {
       if (this.props.data.length > 0) {
         this.setState({
-          data: this.props.data,
+          data: this.props.data
         }, () => {
           this.aheadPage();
         });

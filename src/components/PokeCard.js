@@ -2,12 +2,9 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { debounce } from 'lodash';
+import FastImage from 'react-native-fast-image';
 
 const PokeCard = ({ pokemon, navigation }) => {
-
-  // const goDetail = debounce(() => {
-  //   navigation.navigate('Detail', { pokemon });
-  // }, 400);
 
   const goDetail = () => {
     navigation.navigate('Detail', { pokemon });
@@ -19,7 +16,7 @@ const PokeCard = ({ pokemon, navigation }) => {
         <View style={styles.itemContainer}>
           <View style={styles.imageContainer}>
             {/* <ImageBackground style={styles.pokeImageBackground} source={{uri: 'https://cdn2.iconfinder.com/data/icons/gaming-stroke-icons/104/22-gaming-pokemon-pokeball-512.png'}}> */}
-            <Image style={styles.pokeImage} source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.code}.png` }} />
+            <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.pokeImage} source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.code}.png`, priority: FastImage.priority.high }} />
             {/* </ImageBackground> */}
           </View>
           <View style={styles.descriptionContainer}>

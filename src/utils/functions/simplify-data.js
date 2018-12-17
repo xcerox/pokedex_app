@@ -1,6 +1,6 @@
 import { getPagination } from './infinityScroll';
 
-const PokemonsSimplify = (pokemons, bundle = 10) => {
+const PokemonsSimplify = (pokemons, bundle = 9) => {
   return getPagination(pokemons.map((pokemon, index) => {
     pokemon.code = index + 1;
     return pokemon;
