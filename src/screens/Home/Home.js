@@ -2,15 +2,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { pokemonsFetch } from '../store/actions/poke-actions';
-import Loading from '../components/Loading/Loading';
-import PokeList from '../components/PokeList';
+import { pokemonsFetch } from '../../store/actions/poke-actions';
+import Loading from '../../components/Loading/Loading';
+import PokeList from './PokeList';
 
 class Home extends PureComponent {
 
   static navigationOptions = {
     title: 'PokeDex',
-    headerRight: (<Icon name='magnify' color='#03A9F4' size={40}/>)
+    headerRight: (<Icon name='magnify' color='#03A9F4' size={30}/>)
   }
 
   componentDidMount() {
@@ -21,7 +21,6 @@ class Home extends PureComponent {
   
   render() {
     const { isLoading } = this.props;
-    console.log('render')
     return (
       <Loading show={isLoading}>
         <PokeList />

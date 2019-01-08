@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { URL_IMG_HD } from '../utils/constans/url';
-import { pokemonDetailFetch } from '../store/actions/detail-action';
-import Loading from '../components/Loading/Loading';
-import PokeStats from '../components/PokeStats';
-import FastImage from 'react-native-fast-image';
+
+import Loading from '../../components/Loading/Loading';
+import PokeHeader from './PokeHeader';
+import PokeBox from './PokeBox';
+import PokeStats from './PokeStats';
+
+import { pokemonDetailFetch } from '../../store/actions/detail-action';
 
 class Detail extends PureComponent {
 
@@ -25,30 +27,23 @@ class Detail extends PureComponent {
   }
 
   render() {
-
-    const { isLoading, info } = this.props.pokemon;
-    const pokemonId = this.props.navigation.getParam('pokemon', { code: 0 }).code;
+    const { isLoading, info} = this.props.pokemon;
 
     return (
       <ScrollView style={styles.main_container}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.poke_photo_container}>
-          <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.pokeImage} source={{ uri: `${URL_IMG_HD}${pokemonId}.png`, priority: FastImage.priority.high }} />
-        </View>
         <Loading show={isLoading}>
-          <View style={styles.types_container}>
-            <Text>{ info.types }</Text>
-          </View>
+          <PokeHeader info={info} />
           <View style={styles.stats_container}>
             <PokeStats data={info.stats} />
           </View>
+          <PokeBox />
         </Loading>
       </ScrollView>
     )
   }
 }
-
 
 const styles = StyleSheet.create({
   main_container: {
@@ -56,30 +51,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: '100%'
   },
-  poke_photo_container: {
-    backgroundColor: '#4CAF50', //(4CAF50 | 388E3C) green | #0288D1 blue
-    height: 200,
-    padding: 7,
-    borderBottomWidth: 5,
-    borderColor: '#388E3C',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pokeImage: {
-    width: 180,
-    height: 200,
-  },
   types_container: {
-    backgroundColor: '#BDBDBD', //(4CAF50 | 388E3C) green | #0288D1 blue
+    backgroundColor: '#BDBDBD',
     height: 40,
     padding: 7,
     alignItems: 'center',
     justifyContent: 'center',
   },
   stats_container: {
-    backgroundColor: '#fff', //(4CAF50 | 388E3C) green | #0288D1 blue
+    paddingTop: 30,
+    backgroundColor: '#fff', 
     height: 240,
-  }
+  },
 });
 
 function mapStateToProps({ pokemon }) {

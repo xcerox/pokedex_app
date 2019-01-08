@@ -3,8 +3,8 @@ import GridView from 'react-native-super-grid';
 import { connect } from 'react-redux';
 
 import PokeCard from './PokeCard';
-import LoadingFooter from './Loading/LoadingFooter';
-import { withPagination } from './WithPagination';
+import LoadingFooter from '../../components/Loading/LoadingFooter';
+import { withPagination } from '../../components/WithPagination';
 
 class PokeList extends PureComponent {
 

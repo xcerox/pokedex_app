@@ -5,7 +5,7 @@ const init = {
   isLoading: false,
   info: {
     code: 0,
-    types: '',
+    types: [],
     stats: []
   },
   err: null

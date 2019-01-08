@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { createStackNavigator } from 'react-navigation';
 import store from './store';
 
-import Home from './screens/Home';
-import Detail from './screens/Detail';
+import Home from './screens/Home/Home';
+import Detail from './screens/Detail/Detail';
 
 const Navigation = createStackNavigator({
   Home: Home,

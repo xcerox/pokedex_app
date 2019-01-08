@@ -2,14 +2,6 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f5fcff",
-    paddingTop: 10
-  }
-});
-
 class PokeStats extends PureComponent {
 
   render() {
@@ -41,22 +33,16 @@ class PokeStats extends PureComponent {
                   switch (item.x) {
                     case "speed":
                       return '#FA92B2';
-                      break;
                     case "special-defense":
                       return '#A7DB8D';
-                      break;
                     case "special-attack":
                       return '#9DB7F5';
-                      break;
                     case "defense":
                       return '#FAE078';
-                      break;
                     case "attack":
                       return '#F5AC78';
-                      break;
                     case "hp":
                       return '#FF5959';
-                      break;
                   }
                 }
               }
@@ -71,5 +57,13 @@ class PokeStats extends PureComponent {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: 10
+  }
+});
 
 export default PokeStats;

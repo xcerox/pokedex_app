@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: 'transparent',
     borderBottomLeftRadius: 5,
-    backgroundColor: '#BDBDBD',
+    backgroundColor: '#a7bfcb',
   }
 });
 

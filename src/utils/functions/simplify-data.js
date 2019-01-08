@@ -1,12 +1,13 @@
 import { getPagination } from './infinityScroll';
+import { capitalize } from 'lodash';
 
 const PokemonsSimplify = (pokemons, bundle = 9) => {
   return getPagination(pokemons.map((pokemon, index) => {
     pokemon.code = index + 1;
+    pokemon.name = capitalize(pokemon.name);
     return pokemon;
   }).filter((pokemon) => {
     return pokemon.code <= 151;
-    // return true;
   }), bundle);
 }
 
@@ -20,9 +21,7 @@ const InfoSimplify = pokemon => {
     }
   });
 
-  const types = pokemon.types.map(item => {
-    return item.type.name
-  }).join(' | ');
+  const types = pokemon.types.map(item => capitalize(item.type.name));
 
   return {
     code: pokemon.id,
