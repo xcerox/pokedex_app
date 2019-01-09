@@ -96,8 +96,8 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 
  //JRR
-// def enableProguardInReleaseBuilds = false
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
+// def enableProguardInReleaseBuilds = true
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
