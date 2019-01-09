@@ -7,7 +7,8 @@
     "test": "jest",
     "android": "react-native run-android",
     "upw": "emulator @N4_A25",
-    "uph": "emulator @Nexus_5_API_25"
+    "uph": "emulator @Nexus_5_API_25",
+    "apk": "cd android && gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "axios": "^0.18.0",
