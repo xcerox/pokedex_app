@@ -6,7 +6,8 @@ const init = {
   info: {
     code: 0,
     types: [],
-    stats: []
+    stats: [],
+    descriptions: [{title: '', description: ''}]
   },
   err: null
 }

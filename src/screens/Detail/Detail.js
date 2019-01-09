@@ -12,8 +12,9 @@ import { pokemonDetailFetch } from '../../store/actions/detail-action';
 class Detail extends PureComponent {
 
   static navigationOptions = ({ navigation }) => {
+    const pokemon = navigation.getParam('pokemon', { name: '', code: 0 });
     return {
-      title: navigation.getParam('pokemon', { name: '' }).name,
+      title: `#${pokemon.code} ${pokemon.name}`,
       headerTitleStyle: {
         textAlign: "center",
         flex: 1
@@ -38,7 +39,7 @@ class Detail extends PureComponent {
           <View style={styles.stats_container}>
             <PokeStats data={info.stats} />
           </View>
-          <PokeBox />
+          <PokeBox games={info.descriptions}/>
         </Loading>
       </ScrollView>
     )

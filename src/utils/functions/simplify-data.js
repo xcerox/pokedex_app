@@ -11,7 +11,7 @@ const PokemonsSimplify = (pokemons, bundle = 9) => {
   }), bundle);
 }
 
-const InfoSimplify = pokemon => {
+const InfoSimplify = (pokemon, specie) => {
   
   const stats  = pokemon.stats.map(item => {
     return {
@@ -23,10 +23,21 @@ const InfoSimplify = pokemon => {
 
   const types = pokemon.types.map(item => capitalize(item.type.name));
 
+  const descriptions = specie.flavor_text_entries
+                                .filter(game => game.language.name === 'en')
+                                .map(game => {
+                                  const title = capitalize(game.version.name.split('-').join(' '));
+                                  return {
+                                    title: title,
+                                    description: capitalize(game.flavor_text.split('\n').join(' '))
+                                  }
+                                });
+
   return {
     code: pokemon.id,
     stats: stats,
     types: types,
+    descriptions: descriptions
   }
 }
 

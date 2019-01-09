@@ -20,12 +20,19 @@ class PokeService {
   }
 
   getAllEvolutions(id) {
-    //https://pokeapi.co/api/v2/evolution-chain/1/
     return axios.get(`${this.URL_INFO}evolution-chain/${id}`);
+  }
+
+  getDescription(id){
+    return axios.get(`${this.URL_INFO}pokemon-species/${id}`);
   }
 
   getAll() {
     return axios.get(`${this.URL_INFO}pokemon/`);
+  }
+
+  getInfoAndDescription(id) {
+    return axios.all([me.getInfo(id), me.getDescription(id)]);
   }
 }
 

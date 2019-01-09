@@ -11,7 +11,7 @@ const Type = ({ style, color }) => {
     return null;
   }
 
-  const { name, isRight, code } = color;
+  const { name, code } = color;
 
   return (
     <View style={[style, { backgroundColor: code }]}>
@@ -52,7 +52,7 @@ class PokeHeader extends PureComponent {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 200,
+    height: 240,
     flexDirection: 'column',
   },
   type_container: {
@@ -79,16 +79,17 @@ const styles = StyleSheet.create({
   },
   pokeType: {
     color: '#fff',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#fff',
-    borderRadius: 5,
-    padding: 7,
+    borderRadius: 8,
+    padding: 5,
     alignSelf: 'center',
-    fontSize: 8,
+    fontSize: 10,
+    fontWeight: 'bold'
   },
   poke_Type_Container: {
     justifyContent: 'center',
-    top: 140
+    top: 180
   }
 });
 

@@ -12,9 +12,12 @@ const pokemonDetailFetch = createActionThunk((pokemonId, dispatch) => {
   dispatch(pokemonDetailFetchStart());
 
   PokeService
-    .getInfo(pokemonId)
-    .then(({ data }) => dispatch(pokemonDetailFetchComplete(InfoSimplify(data))))
+    .getInfoAndDescription(pokemonId)
+    .then(([info, specie]) => {
+        dispatch(pokemonDetailFetchComplete(InfoSimplify(info.data, specie.data)));
+    })
     .catch(err => dispatch(pokemonDetailFetchError(err)));
+
 });
 
 export { pokemonDetailFetch };
