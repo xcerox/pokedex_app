@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import Loading from '../../components/Loading/Loading';
 import PokeHeader from './PokeHeader';
 import PokeBox from './PokeBox';
 import PokeStats from './PokeStats';
+import PokeEvoluction from './PokeEvoluction';
 
 import { pokemonDetailFetch } from '../../store/actions/detail-action';
 
@@ -28,20 +29,24 @@ class Detail extends PureComponent {
   }
 
   render() {
-    const { isLoading, info} = this.props.pokemon;
+    const { isLoading, info } = this.props.pokemon;
 
     return (
-      <ScrollView style={styles.main_container}
-        showsVerticalScrollIndicator={false}
-      >
-        <Loading show={isLoading}>
-          <PokeHeader info={info} />
-          <View style={styles.stats_container}>
-            <PokeStats data={info.stats} />
-          </View>
-          <PokeBox games={info.descriptions}/>
-        </Loading>
-      </ScrollView>
+      <View style={styles.main_container}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          nestedScrollEnabled={true}
+        >
+          <Loading show={isLoading}>
+            <PokeHeader info={info} />
+            <View style={styles.stats_container}>
+              <PokeStats data={info.stats} />
+            </View>
+            <PokeBox games={info.descriptions} />
+            <PokeEvoluction chain={info.evoluctions} />
+          </Loading>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
   },
   stats_container: {
     paddingTop: 30,
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff',
     height: 240,
   },
 });

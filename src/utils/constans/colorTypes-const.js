@@ -15,5 +15,6 @@ export const TYPES_COLOR = {
   'Dragon': '#7038F8',
   'Ghost': '#705898',
   'Dark': '#705848',
-  'Steel': '#B8B8D0'
+  'Steel': '#B8B8D0',
+  'Fairy': '#EE99AC'
 }

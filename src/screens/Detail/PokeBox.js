@@ -55,6 +55,7 @@ class PokeBox extends PureComponent {
       <View style={[styles.box_container, { height: styleTemp.height, top: styleTemp.top }]}>
         <View style={styles.game_container}>
           <FlatList
+            nestedScrollEnabled={true}
             data={games}
             renderItem={({ item }) => <PokeGame game={item} styleTemp={styleTemp} />}
             scrollEnabled={this.state.moreTouched}
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     position: 'absolute',
     alignSelf: 'center',
-    height: 60, //200
+    height: 60, 
     width: '70%',
     borderWidth: 1,
     borderRadius: 10,

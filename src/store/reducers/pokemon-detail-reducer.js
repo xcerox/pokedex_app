@@ -7,7 +7,8 @@ const init = {
     code: 0,
     types: [],
     stats: [],
-    descriptions: [{title: '', description: ''}]
+    descriptions: [{title: '', description: ''}],
+    evoluctions: [],
   },
   err: null
 }
