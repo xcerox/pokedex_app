@@ -10,6 +10,7 @@ const getPagination = (data, amount) => {
   let part = {};
   let hasNext = false;
   let counter = 1;
+  data = [...data];
   
   do {
     if (!hasNext) {

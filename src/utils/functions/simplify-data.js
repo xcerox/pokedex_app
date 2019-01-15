@@ -1,14 +1,14 @@
-import { getPagination } from './infinityScroll';
+
 import { capitalize } from 'lodash';
 
-const PokemonsSimplify = (pokemons, bundle = 9) => {
-  return getPagination(pokemons.map((pokemon, index) => {
+const PokemonsSimplify = (pokemons) => {
+  return pokemons.map((pokemon, index) => {
     pokemon.code = index + 1;
     pokemon.name = capitalize(pokemon.name);
     return pokemon;
   }).filter((pokemon) => {
     return pokemon.code <= 151;
-  }), bundle);
+  });
 }
 
 const InfoSimplify = (pokemon, specie, chainEvolution) => {

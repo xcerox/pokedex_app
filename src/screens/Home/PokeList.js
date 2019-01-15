@@ -36,9 +36,10 @@ class PokeList extends PureComponent {
   }
 }
 
-function mapStateToProps({ pokemons }) {
+function mapStateToProps({ pokemons, pokeFilter }) {
   return {
     data: pokemons.data,
+    filter: pokeFilter.filter,
   }
 }
 

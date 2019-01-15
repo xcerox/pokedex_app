@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { next } from '../utils/functions/infinityScroll';
+import { next, getPagination } from '../utils/functions/infinityScroll';
+import { lowerCase } from 'lodash';
 
 
 const withPagination = (WrappedComponent) => {
@@ -9,13 +10,14 @@ const withPagination = (WrappedComponent) => {
       data: [],
       currentPage: 0,
       pagesLoaded: [],
-      hasNext: false
+      hasNext: false,
+      isFilterEnable: false,
     }
 
     componentDidMount() {
       if (this.props.data.length > 0) {
         this.setState({
-          data: this.props.data
+          data: getPagination(this.props.data, 9)
         }, () => {
           this.aheadPage();
         });
@@ -23,7 +25,7 @@ const withPagination = (WrappedComponent) => {
     }
 
     onEndReached = () => {
-      if (this.state.hasNext) {
+      if (this.isNullOrEmpty(this.props.filter) && this.state.hasNext) {
         this.aheadPage();
       }
     }
@@ -40,12 +42,33 @@ const withPagination = (WrappedComponent) => {
       });
     }
 
-    render() {
-      const pagination = {
-        pages: this.state.pagesLoaded,
-        hasNext: this.state.hasNext,
+    filterData = filter => {
+      let pages = this.state.pagesLoaded;
+      let hasNext = this.state.hasNext;
+
+      if (!this.isNullOrEmpty(filter)) {
+        pages = this.props.data.filter(pokemon => {
+          const name = lowerCase(pokemon.name);
+         return name.startsWith(lowerCase(filter))
+        });
+        hasNext = false;
+      } 
+
+      return {
+        pages,
+        hasNext,
         onEndReached: this.onEndReached,
-      }
+      };
+    }
+
+    isNullOrEmpty = value => {
+      return value == null || value == '';
+    }
+
+    render() {
+
+      const pagination = this.filterData(this.props.filter);
+
 
       return (
         <WrappedComponent

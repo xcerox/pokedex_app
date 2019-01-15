@@ -10,13 +10,13 @@ const init = {
 const handler = {
 
   [POKEN_FETCH_INIT]: (state, action) => {
-    return {  data: [], err: null, isLoading: true };
+    return {data: [], err: null, isLoading: true };
   },
   [POKEN_FETCH_COMPLETE]: (state, action) => {
-    return {  data: action.payload, err: null, isLoading: false };
+    return {data: action.payload, err: null, isLoading: false };
   },
   [POKEN_FETCH_ERROR]: (state, action) => {
-    return { ...state, err: action.err, isLoading: false };
+    return {err: action.err, isLoading: false };
   }
 }
 
