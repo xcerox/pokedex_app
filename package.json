@@ -8,7 +8,7 @@
     "android": "react-native run-android",
     "upw": "emulator @N4_A25",
     "uph": "emulator @Nexus_5_API_25",
-    "apk": "cd android && gradlew assembleRelease && cd .."
+    "apk": "cd android && gradlew assembleRelease && cd .. && rm -rf apk && mkdir apk && mv android/app/build/outputs/apk/release/app-release.apk apk/"
   },
   "dependencies": {
     "axios": "^0.18.0",

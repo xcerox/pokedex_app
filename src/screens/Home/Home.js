@@ -15,7 +15,7 @@ class Home extends PureComponent {
 
     return {
       title: 'PokeDex',
-      headerRight: (<Icon.Button name='magnify' color='#03A9F4' backgroundColor="#fff" size={30} onPress={onOpenFilter} />)
+      headerRight: (<Icon.Button name='magnify' color='#03A9F4' backgroundColor="transparent" size={30} onPress={onOpenFilter} />)
     }
   }
 
