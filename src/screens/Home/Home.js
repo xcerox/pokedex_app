@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -23,6 +24,10 @@ class Home extends PureComponent {
     modalVisible: false,
   };
 
+  onOpenFilter = () => {
+    this.onCloseModal();
+  }
+
   onCloseModal = () => {
     this.setState(prevState => {
       return {
@@ -40,20 +45,25 @@ class Home extends PureComponent {
     }
   }
 
-  onOpenFilter = () => {
-    this.onCloseModal();
-  }
-
   render() {
     const { isLoading } = this.props;
     return (
-      <Loading show={isLoading}>
-        <PokeList />
-        <PokeFilter modalVisible={this.state.modalVisible} onCloseModal={this.onCloseModal} />
-      </Loading>
+      <View style={styles.main_container}>
+        <Loading show={isLoading}>
+          <PokeList />
+          <PokeFilter modalVisible={this.state.modalVisible} onCloseModal={this.onCloseModal} />
+        </Loading>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  main_container: {
+    flex: 1,
+    height: '100%'
+  },
+});
 
 function mapStateToProps({ pokemons }) {
   return {

@@ -9,7 +9,7 @@ const FooterLoading = ({show}) => {
   }
   
   return (
-    <Spinner />
+    <Spinner style={{height: 75}}/>
   )
 }
 
