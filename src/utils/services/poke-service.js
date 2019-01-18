@@ -28,7 +28,7 @@ class PokeService {
   }
 
   getAll() {
-    return axios.get(`${this.URL_INFO}pokemon/`);
+    return axios.get(`${this.URL_INFO}pokemon/?offset=0&limit=949`);
   }
 
   getInfoAndDescription(id) {

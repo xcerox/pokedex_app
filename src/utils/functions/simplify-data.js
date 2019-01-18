@@ -1,5 +1,6 @@
 
 import { capitalize } from 'lodash';
+import { POKEDEX_IMG_LIMIT } from '../constans/limit-const';
 
 const PokemonsSimplify = (pokemons) => {
   return pokemons.map((pokemon, index) => {
@@ -7,7 +8,7 @@ const PokemonsSimplify = (pokemons) => {
     pokemon.name = capitalize(pokemon.name);
     return pokemon;
   }).filter((pokemon) => {
-    return pokemon.code <= 151;
+    return pokemon.code < POKEDEX_IMG_LIMIT;
   });
 }
 
@@ -57,7 +58,7 @@ const getEvoluctions = chain => {
 
   const push = evolves => {
     evoluctions.push({
-      name: evolves.species.name,
+      name: capitalize(evolves.species.name),
       code: getIdFromURl(evolves.species.url)
     });
   }
@@ -74,7 +75,7 @@ const getEvoluctions = chain => {
 
   addEvoluction(chain);
 
-  return evoluctions;
+  return evoluctions.filter(pokemon => pokemon.code < POKEDEX_IMG_LIMIT);;
 }
 
 
