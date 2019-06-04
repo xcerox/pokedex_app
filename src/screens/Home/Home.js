@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchSelector } from '../../store/selectors/fetchSelector';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { pokemonsFetch } from '../../store/actions/poke-actions';
@@ -65,7 +66,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps({ pokemons }) {
+
+const selector = fetchSelector('POKEN_FETCH');
+function mapStateToProps(state) {
+  const pokemons = selector(state);
+  // const { pokemons } = state;
   return {
     isLoading: pokemons.isLoading,
     dataLoaded: (pokemons.data.length > 0),
